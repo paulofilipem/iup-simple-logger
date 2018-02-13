@@ -8,22 +8,28 @@ import (
 
 var (
   Log   *log.Logger
+  logPath = "application.log"
 )
 
+func setFileLog(filename string){
+  logPath = filename
+}
+
+func getFileLog() string {
+  return logPath
+}
 
 func init() {
-    // set location of log file
-    //var logpath = build.Default.GOPATH + "/debuggo.log"
-    var logpath = "/tmp/debuggo.log"
 
    flag.Parse()
-   var file, err1 = os.Create(logpath)
+   var file, err1 =  os.OpenFile(logPath,os.O_CREATE|os.O_RDWR|os.O_APPEND, 0660);
 
    if err1 != nil {
       panic(err1)
    }
-      Log = log.New(file, "", log.LstdFlags)
-      Log.Println("LogFile : " + logpath)
+   
+   Log = log.New(file, "", log.LstdFlags)
+   Log.Println("LogFile : " + logPath)
 }
 
 func Debug(message string){
