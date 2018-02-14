@@ -2,16 +2,16 @@ package logger
 
 import (
   "flag"
-  "os"
   "log"
+	"os"
 )
 
 var (
-  Log   *log.Logger
+	Log     *log.Logger
   logPath = "application.log"
 )
 
-func setFileLog(filename string){
+func setFileLog(filename string) {
   logPath = filename
 }
 
@@ -22,7 +22,7 @@ func getFileLog() string {
 func init() {
 
    flag.Parse()
-   var file, err1 =  os.OpenFile(logPath,os.O_CREATE|os.O_RDWR|os.O_APPEND, 0660);
+	var file, err1 = os.OpenFile(logPath, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0660)
 
    if err1 != nil {
       panic(err1)
@@ -32,11 +32,11 @@ func init() {
    Log.Println("LogFile : " + logPath)
 }
 
-func Debug(message string){
+func Debug(message string) {
     Log.Println("DEBUG: " + message)
 }
 
-func Info(message string){
+func Info(message string) {
     Log.Println("INFO: " + message)
 }
 
@@ -48,7 +48,7 @@ func Warning(message string){
     Log.Println("WARNING: " + message)
 }
 
-func Error(message string){
+func Error(message string) {
     Log.Println("ERROR: " + message)
 }
 
