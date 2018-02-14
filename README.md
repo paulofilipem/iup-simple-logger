@@ -17,6 +17,9 @@ import logger "github.com/paulofilipem/iup-simple-logger"
 
 func main(){
 
+    //Optional param, by default will created a file on runtime path with name "application.log"
+    logger.SetFileLog("/tmp/logfilename.log")
+
     logger.Info("Test")
 
     logger.Error("Other test")

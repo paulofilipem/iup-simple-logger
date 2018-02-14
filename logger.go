@@ -14,19 +14,24 @@ var (
 	logPath = "application.log"
 )
 
-//setFileLog set log path full or filename (If u want to write file in the runtime folder)
-func setFileLog(filename string) {
+//SetFileLog set log path full or filename (If u want to write file in the runtime folder)
+func SetFileLog(filename string) {
 	logPath = filename
+	handler() //Change default handle using new filename
 }
 
-//getFileLog get log path or filename
-func getFileLog() string {
+//GetFileLog get log path or filename
+func GetFileLog() string {
 	return logPath
 }
 
 func init() {
-
 	flag.Parse()
+	handler() //Get Default Handle
+}
+
+//handler output stream file
+func handler() {
 	var file, err1 = os.OpenFile(logPath, os.O_CREATE|os.O_RDWR|os.O_APPEND, 0660)
 
 	if err1 != nil {
@@ -34,7 +39,7 @@ func init() {
 	}
 
 	Log = log.New(file, "", log.LstdFlags)
-	Log.Println("LogFile : " + logPath)
+
 }
 
 //Debug func
