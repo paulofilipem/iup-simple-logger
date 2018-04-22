@@ -7,11 +7,25 @@ import (
 )
 
 var (
+	DEBUG     = 0
+	INFO      = 1
+	NOTICE    = 2
+	WARNING   = 3
+	ERROR     = 4
+	CRITICAL  = 5
+	ALERT     = 6
+	EMERGENCY = 7
+)
+
+var (
 	//Log is a golang log handle
 	Log *log.Logger
 
 	//Log path full or filename (If u want to write file in the runtime folder)
 	logPath = "application.log"
+
+	//Default selected log level
+	LogSelectedLevel = DEBUG
 )
 
 //SetFileLog set log path full or filename (If u want to write file in the runtime folder)
@@ -44,40 +58,56 @@ func handler() {
 
 //Debug func
 func Debug(message string) {
-	Log.Println("DEBUG: " + message)
+	if LogSelectedLevel <= DEBUG {
+		Log.Println("DEBUG: " + message)
+	}
 }
 
 //Info func
 func Info(message string) {
-	Log.Println("INFO: " + message)
+	if LogSelectedLevel <= INFO {
+		Log.Println("INFO: " + message)
+	}
 }
 
 //Notice func
 func Notice(message string) {
-	Log.Println("NOTICE: " + message)
+	if LogSelectedLevel <= NOTICE {
+		Log.Println("NOTICE: " + message)
+	}
 }
 
 //Warning func
 func Warning(message string) {
-	Log.Println("WARNING: " + message)
+	if LogSelectedLevel <= WARNING {
+		Log.Println("WARNING: " + message)
+	}
 }
 
 //Error func
 func Error(message string) {
-	Log.Println("ERROR: " + message)
+	if LogSelectedLevel <= ERROR {
+		Log.Println("ERROR: " + message)
+	}
 }
 
 //Critical func
 func Critical(message string) {
-	Log.Println("CRITICAL: " + message)
+	if LogSelectedLevel <= CRITICAL {
+		Log.Println("CRITICAL: " + message)
+	}
 }
 
 //Alert func
 func Alert(message string) {
-	Log.Println("ALERT: " + message)
+	if LogSelectedLevel <= ALERT {
+		Log.Println("ALERT: " + message)
+	}
 }
 
 //Emergency func
 func Emergency(message string) {
-	Log.Println("EMERGENCY: " + message)
+	if LogSelectedLevel <= EMERGENCY {
+		Log.Println("EMERGENCY: " + message)
+	}
 }
